@@ -1,0 +1,101 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff; 
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 20px;
+}
+
+
+.container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px;
+    border: 2px solid #dc143c; 
+}
+
+
+h2 {
+    margin-bottom: 20px;
+    color: #dc143c; 
+    font-size: 24px;
+    text-align: center;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555; 
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="time"] {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+button {
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #dc143c; 
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #b22222; 
+}
+
+#message {
+    color: #d9534f;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+
+.hidden {
+    display: none;
+}
+
+
+#appointment-list {
+    margin-top: 20px;
+}
+
+#appointment-list div {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#appointment-list strong {
+    color: #dc143c; 
+}

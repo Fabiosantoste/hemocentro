@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Doação de Sangue</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" id="auth-section">
+        <h2>Cadastro e Login</h2>
+        <div id="message"></div>
+        <form id="register-form">
+            <label for="username">Nome de Usuário:</label>
+            <input type="text" id="username" name="username">
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password">
+            <button type="button" onclick="register()">Cadastrar</button>
+            <button type="button" onclick="login()">Entrar</button>
+        </form>
+    </div>
+
+    <div class="container hidden" id="appointment-section">
+        <h2>Agendamento de Doação</h2>
+        <form id="appointment-form">
+            <label for="date">Data:</label>
+            <input type="date" id="date" name="date">
+            <label for="time">Hora:</label>
+            <input type="time" id="time" name="time">
+            <button type="button" onclick="scheduleAppointment()">Agendar Horário</button>
+        </form>
+        <button type="button" onclick="logout()">Sair</button>
+    </div>
+
+    <script>
+        function showMessage(message) {
+            document.getElementById('message').innerText = message;
+        }
+
+        async function register() {
+            const form = document.getElementById('register-form');
+            const formData = new FormData(form);
+
+            const response = await fetch('/register', {
+                method: 'POST',
+                body: new URLSearchParams(formData),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+            const text = await response.text();
+            showMessage(text);
+        }
+
+        async function login() {
+            const form = document.getElementById('register-form');
+            const formData = new FormData(form);
+
+            const response = await fetch('/login', {
+                method: 'POST',
+                body: new URLSearchParams(formData),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+            const text = await response.text();
+            showMessage(text);
+
+            if (text === 'Login bem-sucedido.') {
+                document.getElementById('auth-section').classList.add('hidden');
+                document.getElementById('appointment-section').classList.remove('hidden');
+            }
+        }
+
+        async function scheduleAppointment() {
+            const form = document.getElementById('appointment-form');
+            const formData = new FormData(form);
+
+            const response = await fetch('/schedule', {
+                method: 'POST',
+                body: new URLSearchParams(formData),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+            const text = await response.text();
+            showMessage(text);
+        }
+
+        async function logout() {
+            const response = await fetch('/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+            const text = await response.text();
+            showMessage(text);
+
+            if (text === 'Logout realizado com sucesso.') {
+                document.getElementById('auth-section').classList.remove('hidden');
+                document.getElementById('appointment-section').classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
